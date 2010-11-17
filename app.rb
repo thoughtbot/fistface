@@ -7,8 +7,8 @@ class App < Sinatra::Base
   set :app_file, __FILE__
 
   before do
-    headers 'Cache-Control'               => 'public, max-age=86400',
-            'Expires'                     => (Time.now + 86400).httpdate,
+    headers 'Cache-Control'               => 'public, max-age=31536000',
+            'Expires'                     => (Time.now + 31536000).httpdate,
             'Access-Control-Allow-Origin' => '*'
   end
 
@@ -20,6 +20,6 @@ class App < Sinatra::Base
                                 when /\.eot$/  then 'application/vnd.ms-fontobject'
                                 when /\.svg$/  then 'image/svg+xml'
                               end
-    open("#{ENV['S3_URL']}/#{params[:font_face]}").read
+    send_data open("#{ENV['S3_URL']}/#{params[:font_face]}")
   end
 end

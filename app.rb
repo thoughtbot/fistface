@@ -18,6 +18,7 @@ class App < Sinatra::Base
                                 when /\.otf$/  then 'font/opentype'
                                 when /\.woff$/ then 'font/woff'
                                 when /\.eot$/  then 'application/vnd.ms-fontobject'
+                                when /\.svg$/  then 'image/svg+xml'
                               end
     open("#{ENV['S3_URL']}/#{params[:font_face]}").read
   end

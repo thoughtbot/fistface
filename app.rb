@@ -20,6 +20,6 @@ class App < Sinatra::Base
                                 when /\.eot$/  then 'application/vnd.ms-fontobject'
                                 when /\.svg$/  then 'image/svg+xml'
                               end
-    send_data open("#{ENV['S3_URL']}/#{params[:font_face]}")
+    send_file open("#{ENV['S3_URL']}/#{params[:font_face]}")
   end
 end

@@ -12,6 +12,10 @@ class App < Sinatra::Base
             'Access-Control-Allow-Origin' => '*'
   end
 
+  get '/:font_face.css' do
+    open("#{ENV['S3_URL']}/#{params[:font_face]}.css").read
+  end
+
   get '/:font_face' do
     headers['Content-Type'] = case params[:font_face]
                                 when /\.ttf$/  then 'font/truetype'

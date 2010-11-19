@@ -16,7 +16,7 @@ class App < Sinatra::Base
     open("#{ENV['S3_URL']}/#{params[:font_face]}.css").read
   end
 
-  get '/:font_face' do
+  get '/:directory/:font_face' do
     headers['Content-Type'] = case params[:font_face]
                                 when /\.ttf$/  then 'font/truetype'
                                 when /\.otf$/  then 'font/opentype'
@@ -24,6 +24,6 @@ class App < Sinatra::Base
                                 when /\.eot$/  then 'application/vnd.ms-fontobject'
                                 when /\.svg$/  then 'image/svg+xml'
                               end
-    open("#{ENV['S3_URL']}/#{params[:font_face]}").read
+    open("#{ENV['S3_URL']}/#{params[:directory]}/#{params[:font_face]}").read
   end
 end

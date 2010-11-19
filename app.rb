@@ -13,6 +13,7 @@ class App < Sinatra::Base
   end
 
   get '/:font_face.css' do
+    headers['Content-Type'] = 'text/css'
     open("#{ENV['S3_URL']}/#{params[:font_face]}.css").read
   end
 

@@ -21,7 +21,7 @@ class App < Sinatra::Base
     headers['Content-Type'] = case params[:font_face]
                                 when /\.ttf$/  then 'font/truetype'
                                 when /\.otf$/  then 'font/opentype'
-                                when /\.woff$/ then 'application/x-woff'
+                                when /\.woff$/ then 'font/woff'
                                 when /\.eot$/  then 'application/vnd.ms-fontobject'
                                 when /\.svg$/  then 'image/svg+xml'
                               end

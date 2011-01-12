@@ -8,7 +8,7 @@ Usage
 
 In your web app:
 
-    <link href='http://replace-me.com/font-name.css' rel='stylesheet' type='text/css'>
+    <link href="http://replace-me.com/font-name.css" rel="stylesheet" type="text/css">
 
 Replace the href with the URL of your @font-face web service.
 

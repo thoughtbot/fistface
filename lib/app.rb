@@ -8,8 +8,10 @@ class App < Sinatra::Base
   set :app_file, __FILE__
 
   before do
-    headers 'Cache-Control'               => 'public, max-age=31536000',
-            'Expires'                     => (Time.now + 31536000).httpdate,
+    one_year_in_seconds = 31536000
+
+    headers 'Cache-Control'               => "public, max-age=#{one_year_in_seconds}",
+            'Expires'                     => (Time.now + one_year_in_seconds).httpdate,
             'Access-Control-Allow-Origin' => '*'
   end
 

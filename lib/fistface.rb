@@ -1,8 +1,5 @@
-require 'rubygems'
+require 'sinatra/base'
 require 'open-uri'
-require 'bundler'
-
-Bundler.require
 
 class FistFace < Sinatra::Base
   set :app_file, __FILE__

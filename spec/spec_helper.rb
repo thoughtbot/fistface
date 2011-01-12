@@ -1,6 +1,11 @@
 $: << File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'app'
+require 'rubygems'
+require 'bundler'
+
+Bundler.require
+
+require 'fistface'
 require 'rack/test'
 require 'timecop'
 

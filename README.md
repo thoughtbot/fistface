@@ -1,7 +1,7 @@
 Fist Face
 =========
 
-Fist Face is a Do It Yourself @font-face web service.
+DIY @font-face web service.
 
 Usage
 -----
@@ -25,11 +25,14 @@ Setup
 Create a Gemfile:
 
     source "http://rubygems.org"
+    gem "sinatra",  "~> 1.1"
     gem "fistface", "~> 1.0"
 
 Create a rackup file (config.ru):
 
-    require "fistface"
+    require 'rubygems'
+    require 'bundler'
+    Bundler.require
     run FistFace
 
 Create the production environment:

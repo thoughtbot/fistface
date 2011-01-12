@@ -1,19 +1,81 @@
+Fist Face
+=========
+
+Fist Face is a Do It Yourself @font-face web service.
+
+Usage
+-----
+
+In your web app:
+
+    <link href='http://replace-me.com/font-name.css' rel='stylesheet' type='text/css'>
+
+Replace the href with the URL of your @font-face web service.
+
+Features
+--------
+
+* Fixes the Access-Control-Allow-Origin problem in Firefox and other browsers
+* HTTP caches fonts so they are downloaded only once by the same browser
+* Content-Type always correct for .ttf, .otf, .woff, .eot, and .svg fonts
+
 Setup
 -----
 
-Comes with an .rvmrc set up for Ruby Enterprise Edition.
+Get the Sinatra app:
 
-    gem install bundler shotgun thin && bundle install
+    git clone git@github.com:thoughtbot/fistface.git
 
-Development
------------
+Create the production environment:
 
-    shotgun config.ru S3_URL=https://thoughtbot-fonts.s3.amazonaws.com
+    heroku create
+    heroku config:add S3_URL=https://your-bucket.s3.amazonaws.com
 
-Production
-----------
-
-    heroku config:add S3_URL=https://thoughtbot-fonts.s3.amazonaws.com
-
-Where S3_URL is the place you put your .otf, .ttf, .woff, and .eot files.
 Do not include a trailing slash.
+
+S3_URL is the URL of the asset host which stores your @font-face definitions in CSS files.
+
+For each font you want to serve, upload a CSS file to your asset host like:
+
+    @font-face {
+      font-family: 'Chunk';
+      font-weight: normal;
+      font-style: normal;
+      src: local('☺'), url('http://replace-me.com/chunk/chunk.ttf') format('truetype');
+    }
+
+Fist Face uses a directory-and-file convention like this:
+
+    font-name.css
+    font-name/
+      font-name.eot
+      font-name.otf
+      font-name.svg
+      font-name.tff
+      font-name.woff
+
+It is up to you to determine how many formats you need to include in your CSS file.
+
+Upload each font file using that convention.
+
+Deploy your @font-face web service:
+
+    git push heroku master
+
+Start serving fonts!
+
+Patches
+-------
+
+Please use Github Issues and Pull Requests for any patches.
+
+To run the Sinatra app locally:
+
+    gem install bundler
+    bundle install
+    S3_URL=https://your-bucket.s3.amazonaws.com rackup
+
+To run the specs:
+
+    rspec spec/app_spec.rb
+

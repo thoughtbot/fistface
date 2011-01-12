@@ -1,6 +1,7 @@
 require 'rubygems'
-require 'bundler'
 require 'open-uri'
+require 'bundler'
+
 Bundler.require
 
 class App < Sinatra::Base

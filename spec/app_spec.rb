@@ -1,0 +1,101 @@
+require 'spec_helper'
+
+describe App do
+  include Rack::Test::Methods
+
+  def app
+    App
+  end
+
+  context "when I GET a font stylesheet by convention of font-name.css" do
+    before do
+      Timecop.freeze(Date.parse("January 1, 2011"))
+
+      get "chunk.css"
+    end
+
+    it "responds with HTTP status OK" do
+      last_response.should be_ok
+    end
+
+    it "has the @font-face declaration in the CSS body" do
+      last_response.body.should == File.read('spec/fixtures/chunk.css')
+    end
+
+    it "is in the CSS Content-Type" do
+      last_response.content_type.should == 'text/css'
+    end
+
+    it "wildcards the Access-Control-Allow-Origin header so Firefox can access the file" do
+      last_response.headers['Access-Control-Allow-Origin'].should == '*'
+    end
+
+    it "HTTP caches the file for a year in Varnish" do
+      last_response.headers['Cache-Control'].should == 'public, max-age=31536000'
+    end
+
+    it "HTTP caches the file for a year in the user's browser" do
+      last_response.headers['Expires'].should == (Time.now + 31536000).httpdate
+    end
+  end
+
+  context "when I GET a font file by convention of font-name/font-name.ttf" do
+    before do
+      Timecop.freeze(Date.parse("January 1, 2011"))
+
+      get "chunk/chunk.ttf"
+    end
+
+    it "responds with HTTP status OK" do
+      last_response.should be_ok
+    end
+
+    it "is in the truetype Content-Type" do
+      last_response.content_type.should == 'font/truetype'
+    end
+
+    it "wildcards the Access-Control-Allow-Origin header so Firefox can access the file" do
+      last_response.headers['Access-Control-Allow-Origin'].should == '*'
+    end
+
+    it "HTTP caches the file for a year in Varnish" do
+      last_response.headers['Cache-Control'].should == 'public, max-age=31536000'
+    end
+
+    it "HTTP caches the file for a year in the user's browser" do
+      last_response.headers['Expires'].should == (Time.now + 31536000).httpdate
+    end
+  end
+
+  context "when I GET an opentype font" do
+    before { get "chunk/chunk.otf" }
+
+    it "is in the opentype Content-Type" do
+      last_response.content_type.should == 'font/opentype'
+    end
+  end
+
+  context "when I GET a web open font format font" do
+    before { get "league-gothic/league-gothic.woff" }
+
+    it "is in the web open font format Content-Type" do
+      last_response.content_type.should == 'font/woff'
+    end
+  end
+
+  context "when I GET an embedded opentype font" do
+    before { get "league-gothic/league-gothic.eot" }
+
+    it "is in the embedded opentype Content-Type" do
+      last_response.content_type.should == 'application/vnd.ms-fontobject'
+    end
+  end
+
+  context "when I GET an svg font" do
+    before { get "league-gothic/league-gothic.svg" }
+
+    it "is in the svg Content-Type" do
+      last_response.content_type.should == 'image/svg+xml'
+    end
+  end
+end

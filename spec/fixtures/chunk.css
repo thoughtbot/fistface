@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Chunk';
+  font-weight: normal;
+  font-style: normal;
+  src: url('chunk/chunk.otf');
+  src: local('☺'), url('chunk/chunk.ttf') format('truetype');
+}

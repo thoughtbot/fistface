@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe App do
+describe FistFace do
   include Rack::Test::Methods
 
   def app
-    App
+    FistFace
   end
 
   context "when I GET a font stylesheet by convention of font-name.css" do
@@ -76,7 +76,7 @@ describe App do
   end
 
   context "when I GET a web open font format font" do
-    before { get "league-gothic/league-gothic.woff" }
+    before { get "chunk/chunk.woff" }
 
     it "is in the web open font format Content-Type" do
       last_response.content_type.should == 'font/woff'
@@ -84,7 +84,7 @@ describe App do
   end
 
   context "when I GET an embedded opentype font" do
-    before { get "league-gothic/league-gothic.eot" }
+    before { get "chunk/chunk.eot" }
 
     it "is in the embedded opentype Content-Type" do
       last_response.content_type.should == 'application/vnd.ms-fontobject'
@@ -92,7 +92,7 @@ describe App do
   end
 
   context "when I GET an svg font" do
-    before { get "league-gothic/league-gothic.svg" }
+    before { get "chunk/chunk.svg" }
 
     it "is in the svg Content-Type" do
       last_response.content_type.should == 'image/svg+xml'

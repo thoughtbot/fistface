@@ -22,9 +22,15 @@ Features
 Setup
 -----
 
-Get the Sinatra app:
+Create a Gemfile:
 
-    git clone git@github.com:thoughtbot/fistface.git
+    source "http://rubygems.org"
+    gem "fistface", "~> 1.0"
+
+Create a rackup file (config.ru):
+
+    require "fistface"
+    run FistFace
 
 Create the production environment:
 

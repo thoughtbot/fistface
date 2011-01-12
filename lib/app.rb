@@ -4,7 +4,7 @@ require 'bundler'
 
 Bundler.require
 
-class App < Sinatra::Base
+class FistFace < Sinatra::Base
   set :app_file, __FILE__
 
   before do

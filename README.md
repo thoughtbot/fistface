@@ -35,8 +35,12 @@ Create a rackup file (config.ru):
     Bundler.require
     run FistFace
 
-Create the production environment:
+Prepare the production environment:
 
+    bundle install
+    git init
+    git add .
+    git commit -m "Creating a Fist Face instance"
     heroku create
     heroku config:add S3_URL=https://your-bucket.s3.amazonaws.com
 

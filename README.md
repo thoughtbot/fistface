@@ -92,3 +92,16 @@ To run the specs:
 
     rspec spec/app_spec.rb
 
+Credits
+-------
+
+![thoughtbot](http://thoughtbot.com/images/tm/logo.png)
+
+Fist Face is maintained and funded by [thoughtbot, inc](http://thoughtbot.com/community)
+
+The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+
+License
+-------
+
+Fist Face is Copyright © 2011 thoughtbot. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.

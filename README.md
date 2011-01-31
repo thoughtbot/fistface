@@ -64,7 +64,7 @@ Fist Face uses a directory-and-file convention like this:
       font-name.eot
       font-name.otf
       font-name.svg
-      font-name.tff
+      font-name.ttf
       font-name.woff
 
 It is up to you to determine how many formats you need to include in your CSS file.

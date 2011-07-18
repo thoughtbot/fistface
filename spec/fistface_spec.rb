@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe FistFace do
+describe "FistFace" do
   include Rack::Test::Methods
 
   def app
-    FistFace
+    @app ||= Sinatra::Application
   end
 
   context "when I GET a font stylesheet by convention of font-name.css" do

@@ -6,7 +6,6 @@ module Sinatra
 
     def self.registered(app)
       app.before do
-        puts "// FistFace Before Filter"
         one_year_in_seconds = 31536000
 
         headers 'Cache-Control'               => "public, max-age=#{one_year_in_seconds}",
@@ -15,13 +14,11 @@ module Sinatra
       end
 
       app.get '/:font_face.css' do
-        puts "// FistFace Get Stylesheet"
         headers['Content-Type'] = 'text/css'
         open("#{ENV['S3_URL']}/#{params[:font_face]}.css").read
       end
 
       app.get '/:directory/:font_face' do
-        puts "// FistFace Get Font File"
         headers['Content-Type'] = case params[:font_face]
                                     when /\.ttf$/  then 'font/truetype'
                                     when /\.otf$/  then 'font/opentype'

@@ -9,10 +9,12 @@ describe "FistFace" do
 
   context "when I GET a font stylesheet by convention of font-name.css" do
     before do
-      Timecop.freeze(Date.parse("January 1, 2011"))
+      Timecop.freeze(first_of_january)
 
       get "chunk.css"
     end
+
+    after { Timecop.return }
 
     it "responds with HTTP status OK" do
       last_response.should be_ok
@@ -41,10 +43,12 @@ describe "FistFace" do
 
   context "when I GET a font file by convention of font-name/font-name.ttf" do
     before do
-      Timecop.freeze(Date.parse("January 1, 2011"))
+      Timecop.freeze(first_of_january)
 
       get "chunk/chunk.ttf"
     end
+
+    after { Timecop.return }
 
     it "responds with HTTP status OK" do
       last_response.should be_ok
@@ -97,5 +101,9 @@ describe "FistFace" do
     it "is in the svg Content-Type" do
       last_response.content_type.should == 'image/svg+xml'
     end
+  end
+
+  def first_of_january
+    Date.parse("January 1, 2011")
   end
 end

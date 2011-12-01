@@ -6,9 +6,10 @@ Gem::Specification.new do |s|
 
   # Dependencies
   s.add_dependency('sinatra', '~> 1.1')
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "rack-test"
-  s.add_development_dependency "timecop"
+  s.add_development_dependency("rspec")
+  s.add_development_dependency("rack-test")
+  s.add_development_dependency("timecop")
+  s.add_development_dependency("rake")
 
   #Configuration
   s.name        = 'fistface'

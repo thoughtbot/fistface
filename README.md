@@ -24,24 +24,32 @@ Setup
 
 Create a Gemfile:
 
-    source "http://rubygems.org"
-    gem "sinatra",  "~> 1.1"
-    gem "fistface", "~> 1.0"
+    source 'http://rubygems.org'
+    gem 'sinatra',  '~> 1.1'
+    gem 'fistface', '~> 1.0'
 
 Create a rackup file (config.ru):
 
     require 'rubygems'
     require 'bundler'
     Bundler.require
-    run FistFace
+    run Sinatra::FistFace
+    run Sinatra::Application
 
-Prepare the production environment:
+Prepare the app for production:
 
     bundle install
     git init
     git add .
-    git commit -m "Creating a Fist Face instance"
-    heroku create
+    git commit -m 'Creating a Fist Face instance'
+
+Create the production environment. Use Heroku's Bamboo stack in order to use
+[Varnish](https://devcenter.heroku.com/articles/http-caching):
+
+    heroku create your-app-name-here --stack bamboo-mri-1.9.2
+
+Add your S3 bucket:
+
     heroku config:add S3_URL=https://your-bucket.s3.amazonaws.com
 
 Do not include a trailing slash.

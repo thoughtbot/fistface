@@ -11,18 +11,18 @@ module Sinatra
       end
 
       app.get '/:font_face.css' do
-        headers['Content-Type'] = 'text/css'
+        content_type 'text/css'
         open("#{ENV['S3_URL']}/#{params[:font_face]}.css").read
       end
 
       app.get '/:directory/:font_face' do
-        headers['Content-Type'] = case params[:font_face]
-                                  when /\.ttf$/  then 'font/truetype'
-                                  when /\.otf$/  then 'font/opentype'
-                                  when /\.woff$/ then 'font/woff'
-                                  when /\.eot$/  then 'application/vnd.ms-fontobject'
-                                  when /\.svg$/  then 'image/svg+xml'
-                                  end
+        content_type case params[:font_face]
+                     when /\.ttf$/  then 'font/truetype'
+                     when /\.otf$/  then 'font/opentype'
+                     when /\.woff$/ then 'font/woff'
+                     when /\.eot$/  then 'application/vnd.ms-fontobject'
+                     when /\.svg$/  then 'image/svg+xml'
+                     end
         open("#{ENV['S3_URL']}/#{params[:directory]}/#{params[:font_face]}").read
       end
 

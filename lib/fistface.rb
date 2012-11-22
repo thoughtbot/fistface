@@ -6,11 +6,8 @@ module Sinatra
 
     def self.registered(app)
       app.before do
-        one_year_in_seconds = 31536000
-
-        headers 'Cache-Control'               => "public, max-age=#{one_year_in_seconds}",
-                'Expires'                     => (Time.now + one_year_in_seconds).httpdate,
-                'Access-Control-Allow-Origin' => '*'
+        expires 31536000, :public
+        headers 'Access-Control-Allow-Origin' => '*'
       end
 
       app.get '/:font_face.css' do

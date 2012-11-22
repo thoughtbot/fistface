@@ -25,7 +25,7 @@ describe "FistFace" do
     end
 
     it "is in the CSS Content-Type" do
-      last_response.content_type.should == 'text/css'
+      last_response.content_type.should == 'text/css;charset=utf-8'
     end
 
     it "wildcards the Access-Control-Allow-Origin header so Firefox can access the file" do

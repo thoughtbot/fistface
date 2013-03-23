@@ -16,17 +16,19 @@ module Sinatra
       end
 
       app.get '/:directory/:font_face' do
-        content_type case params[:font_face]
-                     when /\.ttf$/  then 'font/truetype'
-                     when /\.otf$/  then 'font/opentype'
-                     when /\.woff$/ then 'font/woff'
-                     when /\.eot$/  then 'application/vnd.ms-fontobject'
-                     when /\.svg$/  then 'image/svg+xml'
-                     end
+        content_type(
+          case params[:font_face]
+            when /\.ttf$/  then 'font/truetype'
+            when /\.otf$/  then 'font/opentype'
+            when /\.woff$/ then 'font/woff'
+            when /\.eot$/  then 'application/vnd.ms-fontobject'
+            when /\.svg$/  then 'image/svg+xml'
+          end
+        )
         open("#{ENV['S3_URL']}/#{params[:directory]}/#{params[:font_face]}").read
       end
-
     end
   end
+
   register FistFace
 end

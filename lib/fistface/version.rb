@@ -1,3 +1,3 @@
-module Fistface
-  VERSION = "1.0.1"
+module FistFace
+  VERSION = '1.0.1'
 end

@@ -5,4 +5,4 @@ require 'rack/test'
 require 'timecop'
 
 ENV['RACK_ENV'] = 'test'
-ENV['S3_URL']   = 'spec/fixtures'
+ENV['S3_URL'] = 'spec/fixtures'

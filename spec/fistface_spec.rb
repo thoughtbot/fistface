@@ -103,6 +103,17 @@ describe 'FistFace' do
     end
   end
 
+  context 'when I GET an assets via certain domain' do
+    before do
+      ENV['ALLOW_ORIGIN'] = "*.example.com"
+      get 'chunk/chunk.svg'
+    end
+
+    it 'limits the Access-Control-Allow-Origin header to the certain domain' do
+      last_response.headers['Access-Control-Allow-Origin'].should == '*.example.com'
+    end
+  end
+
   def first_of_january
     Date.parse('January 1, 2011')
   end

@@ -7,7 +7,9 @@ module Sinatra
     def self.registered(app)
       app.before do
         expires 31536000, :public
-        headers 'Access-Control-Allow-Origin' => '*'
+        last_modified settings.start_time
+        etag settings.start_time.to_s
+        headers 'Access-Control-Allow-Origin' => ENV['ALLOW_ORIGIN'] || '*'
       end
 
       app.get '/:font_face.css' do

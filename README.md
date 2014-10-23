@@ -98,7 +98,7 @@ To run the Sinatra app locally:
 
 To run the specs:
 
-    rspec spec/app_spec.rb
+    rspec spec/fistface_spec.rb
 
 Credits
 -------

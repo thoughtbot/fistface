@@ -8,6 +8,8 @@ module Sinatra
       app.before do
         expires 31536000, :public
         headers 'Access-Control-Allow-Origin' => ENV['ALLOW_ORIGIN'] || '*'
+        headers 'Last-Modified' => ""
+        headers 'ETag' => ""
       end
 
       app.get '/:font_face.css' do
